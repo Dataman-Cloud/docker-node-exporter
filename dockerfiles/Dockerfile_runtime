@@ -2,8 +2,9 @@ FROM demoregistry.dataman-inc.com/library/centos7-base:20160907193907
 MAINTAINER pro zpang@dataman-inc.com
 
 ENV NODE_EXPORTER_VERSION=0.14.0
-ENV NODE_EXPORTER_PKG_NAME=node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
+ENV NODE_EXPORTER_PKG_NAME=node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64
 
-RUN wget https://github.com/prometheus/node_exporter/releases/download/v${NODE_EXPORTER_VERSION}/${NODE_EXPORTER_PKG_NAME} && \
-	             tar xzvf $NODE_EXPORTER_PKG_NAME -d / && \
-		     rm -Rf $NODE_EXPORTER_PKG_NAME
+RUN wget https://github.com/prometheus/node_exporter/releases/download/v${NODE_EXPORTER_VERSION}/${NODE_EXPORTER_PKG_NAME}.tar.gz && \
+	             tar xzvf $NODE_EXPORTER_PKG_NAME.tar.gz && \
+		     mv $NODE_EXPORTER_PKG_NAME/node_exporter / && \
+		     rm -Rf $NODE_EXPORTER_PKG_NAME*
